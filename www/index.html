@@ -10,27 +10,28 @@
     <script src="keys.js"></script>
     <script>
       var ncmb = new NCMB(appKey, clientKey);
-      var UTdata = ncmb.DataStore("Test0");
+      var UTdata = ncmb.DataStore("Test1");
       var key = "HP";
 
-
       function enterData() {
-      var uTdata = new UTdata();
-      var value = parseInt($("#data").val());
+        var uTdata = new UTdata();
+        var value = parseInt($("#HP").val());
 
-      uTdata.set(key, value)
-      .save()
-      .then(function(results){
-        $("#display").removeClass();
-        $("#display").addClass("bg-success");
-        $("#display").html("enter success");
-      })
-      .catch(function(results){
-        $("#display").removeClass();
-        $("#display").addClass("bg-warning");
-        $("#display").html("enter fail");
-      })
-    }
+        uTdata.set(key, value)
+        .save()
+        .then(function(results){
+          $("#display").removeClass();
+          $("#display").addClass("bg-success");
+          $("#display").html("enter success");
+        })
+        .catch(function(results){
+          $("#display").removeClass();
+          $("#display").addClass("bg-warning");
+          $("#display").html("enter fail");
+        })
+        
+      }
+    
 
       
     </script>
@@ -46,17 +47,17 @@
     <label>素早さ　</label>
   </div>
   <div class="form-group">
-    <input type="text" id="data" placeholder="0" size="1"> 
+    <input type="text" id="HP" placeholder="0" size="1"> 
     <label> </label>
-    <input type="text" id="data" placeholder="0" size="1"> 
+    <input type="text" id="A" placeholder="0" size="1"> 
     <label> </label>
-    <input type="text" id="data" placeholder="0" size="1"> 
+    <input type="text" id="B" placeholder="0" size="1"> 
     <label> </label>
-    <input type="text" id="data" placeholder="0" size="1">
+    <input type="text" id="C" placeholder="0" size="1">
     <label> </label>
-    <input type="text" id="data" placeholder="0" size="1"> 
+    <input type="text" id="D" placeholder="0" size="1"> 
     <label> </label>
-    <input type="text" id="data" placeholder="0" size="1"> 
+    <input type="text" id="S" placeholder="0" size="1"> 
   </div>
   <div>
     <a onclick="enterData()" class="btn btn-outline-secondary" role="button" style="width:100px">Enter</a>
