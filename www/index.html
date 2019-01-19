@@ -11,11 +11,12 @@
     <script>
       var ncmb = new NCMB(appKey, clientKey);
       var UTdata = ncmb.DataStore("Test1");
-      var key = "HP";
+      var key = "HP" "A";
 
       function enterData() {
         var uTdata = new UTdata();
         var value = parseInt($("#HP").val());
+        var value = parseInt($("#A").val());
 
         uTdata.set(key, value)
         .save()
