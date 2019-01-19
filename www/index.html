@@ -12,13 +12,15 @@
       var ncmb = new NCMB(appKey, clientKey);
       var UTdata = ncmb.DataStore("Test1");
       var key = "HP";
+      var key1 = "A";
 
       function enterData() {
         var uTdata = new UTdata();
         var value = parseInt($("#HP").val());
-        var value = parseInt($("#A").val());
+        var value1 = parseInt($("#A").val());
 
         uTdata.set(key, value)
+        .set(key1, value1)
         .save()
         .then(function(results){
           $("#display").removeClass();
@@ -32,8 +34,6 @@
         })
         
       }
-    
-
       
     </script>
 </head>
