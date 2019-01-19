@@ -13,14 +13,26 @@
       var UTdata = ncmb.DataStore("Test1");
       var key = "HP";
       var key1 = "A";
+      var key2 = "B";
+      var key3 = "C";
+      var key4 = "D";
+      var key5 = "S";
 
       function enterData() {
         var uTdata = new UTdata();
         var value = parseInt($("#HP").val());
         var value1 = parseInt($("#A").val());
+        var value2 = parseInt($("#B").val());
+        var value3 = parseInt($("#C").val());
+        var value4 = parseInt($("#D").val());
+        var value5 = parseInt($("#S").val());
 
         uTdata.set(key, value)
         .set(key1, value1)
+        .set(key2, value2)
+        .set(key3, value3)
+        .set(key4, value4)
+        .set(key5, value5)
         .save()
         .then(function(results){
           $("#display").removeClass();
@@ -34,6 +46,7 @@
         })
         
       }
+      
       
     </script>
 </head>
