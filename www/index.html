@@ -7,7 +7,32 @@
     <script src="components/loader.js"></script>
     <link rel="stylesheet" href="components/loader.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="keys.js"></script>
     <script>
+      var ncmb = new NCMB(appKey, clientKey);
+      var UTdata = ncmb.DataStore("Test0");
+      var key = "HP";
+
+
+      function enterData() {
+      var uTdata = new UTdata();
+      var value = parseInt($("#data").val());
+
+      uTdata.set(key, value)
+      .save()
+      .then(function(results){
+        $("#display").removeClass();
+        $("#display").addClass("bg-success");
+        $("#display").html("enter success");
+      })
+      .catch(function(results){
+        $("#display").removeClass();
+        $("#display").addClass("bg-warning");
+        $("#display").html("enter fail");
+      })
+    }
+
+      
     </script>
 </head>
 <body>
@@ -19,6 +44,7 @@
     <label>特攻　</label>
     <label>特防　</label>
     <label>素早さ　</label>
+  </div>
   <div class="form-group">
     <input type="text" id="data" placeholder="0" size="1"> 
     <label> </label>
@@ -31,8 +57,20 @@
     <input type="text" id="data" placeholder="0" size="1"> 
     <label> </label>
     <input type="text" id="data" placeholder="0" size="1"> 
-    <label> </label>
-  </div>  
+  </div>
+  <div>
+    <a onclick="enterData()" class="btn btn-outline-secondary" role="button" style="width:100px">Enter</a>
+  </div> 
+  <div>
+    <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">Fetch All</a>
+    <a onclick="deleteData()" class="btn btn-outline-primary" role="buton">Delete</a>
+    <a onclick="countData()" class="btn btn-outline-primary" role="button">Count</a>
+    <a onclick="sortData()" class="btn btn-outline-primary" role="button">Sort</a>
+  </div>
+
+  <div id="display" class="text-light bg-info">
+    Results
+  </div>
   
 </body>
 </html>
