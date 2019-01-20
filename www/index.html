@@ -49,8 +49,8 @@
       function fetchAll() {
         UTdata.fetchAll()
         .then(function(results){
-          var msg="<table border='1' rule='all'>";
-          msg += "<tr><th>HP</th><th>A</th><th>B</th><th>C</th><th>D</th><th>S</th></tr>";
+          var msg="<table border='1' rules='all' width='100%'>";
+          msg += "<tr><th>体力</th><th>攻撃</th><th>防御</th><th>特攻</th><th>特坊</th><th>素早さ</th></tr>";
           for(var i=0; i<results.length; i++){
             var HP=results[i].get("HP");
             var A=results[i].get("A");
@@ -62,8 +62,8 @@
           }
           msg += "</table>";
           $("#display").removeClass();
-          $("#display").addClass("text-light");
-          $("#display").addClass("bg-primary");
+          $("#display").addClass("text-dark");
+          $("#display").addClass("bg-light");
           $("#display").html(msg);
         })
         .catch(function(error){
@@ -80,6 +80,12 @@
 </head>
 <body>
   <h1>データ管理アプリ</h1>
+  <div>
+    <label>ニックネーム</label>
+  </div>
+  <div class="form-group">
+    <input type="text" id="name" placeholder="ニックネーム" size="">
+  </div>
   <div>
     <label>体力　</label>
     <label>攻撃　</label>
