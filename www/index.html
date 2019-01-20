@@ -17,6 +17,7 @@
       var key3 = "C";
       var key4 = "D";
       var key5 = "S";
+      var key6 = "name";
 
       function enterData() {
         var uTdata = new UTdata();
@@ -26,6 +27,7 @@
         var value3 = parseInt($("#C").val());
         var value4 = parseInt($("#D").val());
         var value5 = parseInt($("#S").val());
+        var value6 = ($("#name").val());
 
         uTdata.set(key, value)
         .set(key1, value1)
@@ -33,6 +35,7 @@
         .set(key3, value3)
         .set(key4, value4)
         .set(key5, value5)
+        .set(key6, value6)
         .save()
         .then(function(results){
           $("#display").removeClass();
@@ -50,15 +53,16 @@
         UTdata.fetchAll()
         .then(function(results){
           var msg="<table border='1' rules='all' width='100%'>";
-          msg += "<tr><th>体力</th><th>攻撃</th><th>防御</th><th>特攻</th><th>特坊</th><th>素早さ</th></tr>";
+          msg += "<tr><th>ニックネーム</th><th>体力</th><th>攻撃</th><th>防御</th><th>特攻</th><th>特坊</th><th>素早さ</th></tr>";
           for(var i=0; i<results.length; i++){
+            var name=results[i].get("name");
             var HP=results[i].get("HP");
             var A=results[i].get("A");
             var B=results[i].get("B");
             var C=results[i].get("C");
             var D=results[i].get("D");
             var S=results[i].get("S");
-            msg += "<tr><td>" + HP + "</td><td>" + A + "</td><td>" + B + "</td><td>" + C + "</td><td>" + D + "</td><td>" + S + "</td></tr>";
+            msg += "<tr><td>" + name + "</td><td>" + HP + "</td><td>" + A + "</td><td>" + B + "</td><td>" + C + "</td><td>" + D + "</td><td>" + S + "</td></tr>";
           }
           msg += "</table>";
           $("#display").removeClass();
@@ -114,7 +118,7 @@
     <label>ニックネーム</label>
   </div>
   <div class="form-group">
-    <input type="text" id="name" placeholder="ニックネーム" size="">
+    <input type="text" id="name" placeholder="ニックネーム" size="" required="required">
   </div>
   <div>
     <label>体力　</label>
@@ -125,17 +129,17 @@
     <label>素早さ　</label>
   </div>
   <div class="form-group">
-    <input type="number" id="HP" placeholder="0" style="width:45px"> 
+    <input type="number" id="HP" placeholder="0" style="width:45px" required="required"> 
     <label> </label>
-    <input type="number" id="A" placeholder="0" style="width:45px"> 
+    <input type="number" id="A" placeholder="0" style="width:45px" required="required"> 
     <label> </label>
-    <input type="number" id="B" placeholder="0" style="width:45px"> 
+    <input type="number" id="B" placeholder="0" style="width:45px" required="required"> 
     <label> </label>
-    <input type="number" id="C" placeholder="0" style="width:45px">
+    <input type="number" id="C" placeholder="0" style="width:45px" required="required">
     <label> </label>
-    <input type="number" id="D" placeholder="0" style="width:45px"> 
+    <input type="number" id="D" placeholder="0" style="width:45px" required="required"> 
     <label> </label>
-    <input type="number" id="S" placeholder="0" style="width:45px"> 
+    <input type="number" id="S" placeholder="0" style="width:45px" required="required"> 
   </div>
   <div>
     <a onclick="enterData()" class="btn btn-outline-secondary" role="button" style="width:auto">保存</a>
