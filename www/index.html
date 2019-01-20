@@ -114,42 +114,51 @@
 </head>
 <body>
   <h1>データ管理アプリ</h1>
-  <div>
+  <div class="form-row">
+
+  <div class="form-group col-10">
     <label>ニックネーム</label>
+    <input type="text" class="form-control" id="name" placeholder="ニックネーム" required="required">
   </div>
-  <div class="form-group">
-    <input type="text" id="name" placeholder="ニックネーム" size="" required="required">
   </div>
-  <div>
-    <label>体力　</label>
-    <label>攻撃　</label>
-    <label>防御　</label>
-    <label>特攻　</label>
-    <label>特防　</label>
-    <label>素早さ　</label>
+
+  <div class="form-row">
+    <div class="form-group col-2">
+      <label for="HP">体力</label>
+      <input type="number" class="form-control" id="HP" placeholder="0"  required="required"> 
+    </div>
+    <div class="form-group col-2">
+      <label for="A">攻撃</label>
+      <input type="number" class="form-control" id="A" placeholder="0"  required="required"> 
+    </div>
+    <div class="form-group col-2">
+      <label for="B">防御</label>
+      <input type="number" class="form-control" id="B" placeholder="0"  required="required"> 
+    </div>
+    <div class="form-group col-2">
+      <label for="C">特攻</label>
+      <input type="number" class="form-control" id="C" placeholder="0"  required="required">
+    </div>
+    <div class="form-group col-2">
+      <label for="D">特防</label>
+      <input type="number" class="form-control" id="D" placeholder="0" required="required">
+    </div>
+    <div class="form-group col-2"> 
+      <label for="S">素早さ</label>
+      <input type="number" class="form-control" id="S" placeholder="0"  required="required"> 
+    </div>
   </div>
-  <div class="form-group">
-    <input type="number" id="HP" placeholder="0" style="width:45px" required="required"> 
-    <label> </label>
-    <input type="number" id="A" placeholder="0" style="width:45px" required="required"> 
-    <label> </label>
-    <input type="number" id="B" placeholder="0" style="width:45px" required="required"> 
-    <label> </label>
-    <input type="number" id="C" placeholder="0" style="width:45px" required="required">
-    <label> </label>
-    <input type="number" id="D" placeholder="0" style="width:45px" required="required"> 
-    <label> </label>
-    <input type="number" id="S" placeholder="0" style="width:45px" required="required"> 
-  </div>
+
+
+
   <div>
     <a onclick="enterData()" class="btn btn-outline-secondary" role="button" style="width:auto">保存</a>
-  
     <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton" style="width:auto">表示</a>
     <a onclick="deleteData()" class="btn btn-outline-danger" role="buton" style="width:auto">削除</a>
     <a onclick="countData()" class="btn btn-outline-primary" role="button" style="width:auto">カウント</a>
   </div>
 
-  <div id="display" class="text-light bg-info">
+  <div id="display" class="text-light bg-info" style="width:auto">
     Results
   </div>
   
