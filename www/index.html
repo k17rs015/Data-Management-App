@@ -46,7 +46,32 @@
         })
       }
 
-    
+      function fetchAll() {
+        UTdata.fetchAll()
+        .then(function(results){
+          var msg="<table border='1' rule='all'>";
+          msg += "<tr><th>HP</th><th>A</th><th>B</th><th>C</th><th>D</th><th>S</th></tr>";
+          for(var i=0; i<results.length; i++){
+            var HP=results[i].get("HP");
+            var A=results[i].get("A");
+            var B=results[i].get("B");
+            var C=results[i].get("C");
+            var D=results[i].get("D");
+            var S=results[i].get("S");
+            msg += "<tr><td>" + HP + "</td><td>" + A + "</td><td>" + B + "</td><td>" + C + "</td><td>" + D + "</td><td>" + S + "</td></tr>";
+          }
+          msg += "</table>";
+          $("#display").removeClass();
+          $("#display").addClass("text-light");
+          $("#display").addClass("bg-primary");
+          $("#display").html(msg);
+        })
+        .catch(function(error){
+          $("#display").removeClass();
+          $("#display").addClass("bg-warning");
+          $("#display").html("delete fail:" + JSON.stringify(error));
+        })
+      }
 
 
       
