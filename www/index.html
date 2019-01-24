@@ -18,6 +18,8 @@
       var key4 = "D";
       var key5 = "S";
       var key6 = "name";
+      var key7 = "level";
+      var key8 = "memo";
 
       function enterData() {
         var uTdata = new UTdata();
@@ -28,6 +30,8 @@
         var value4 = parseInt($("#D").val());
         var value5 = parseInt($("#S").val());
         var value6 = $("#name").val();
+        var value7 = $("#level").val();
+        var value8 = $("#memo").val();
 
         uTdata.set(key, value)
         .set(key1, value1)
@@ -36,6 +40,8 @@
         .set(key4, value4)
         .set(key5, value5)
         .set(key6, value6)
+        .set(key7, value7)
+        .set(key8, value8)
         .save()
         .then(function(results){
           $("#display").removeClass();
@@ -53,16 +59,17 @@
         UTdata.fetchAll()
         .then(function(results){
           var msg="<table border='1' rules='all' width='100%'>";
-          msg += "<tr><th>ニックネーム</th><th>体力</th><th>攻撃</th><th>防御</th><th>特攻</th><th>特坊</th><th>素早さ</th></tr>";
+          msg += "<tr><th>ニックネーム</th><th>レベル</th><th>体力</th><th>攻撃</th><th>防御</th><th>特攻</th><th>特坊</th><th>素早さ</th></tr>";
           for(var i=0; i<results.length; i++){
             var name=results[i].get("name");
+            var level=results[i].get("level");
             var HP=results[i].get("HP");
             var A=results[i].get("A");
             var B=results[i].get("B");
             var C=results[i].get("C");
             var D=results[i].get("D");
             var S=results[i].get("S");
-            msg += "<tr><td>" + name + "</td><td>" + HP + "</td><td>" + A + "</td><td>" + B + "</td><td>" + C + "</td><td>" + D + "</td><td>" + S + "</td></tr>";
+            msg += "<tr><td>" + name + "</td><td>" + level + "</td><td>" + HP + "</td><td>" + A + "</td><td>" + B + "</td><td>" + C + "</td><td>" + D + "</td><td>" + S + "</td></tr>";
           }
           msg += "</table>";
           $("#display").removeClass();
@@ -75,6 +82,7 @@
           $("#display").addClass("bg-warning");
           $("#display").html("delete fail:" + JSON.stringify(error));
         })
+
       }
 
       function deleteData() {
@@ -113,12 +121,17 @@
     </script>
 </head>
 <body>
+  
   <h1>ポケモン管理アプリ</h1>
   <div class="container-fluid">
     <div class="form-row">
-      <div class="form-group col-10">
+      <div class="form-group col-5">
         <label>ニックネーム</label>
-        <input type="text" class="form-control" id="name" placeholder="ニックネーム" required>
+        <input type="text" class="form-control form-control-sm" id="name" placeholder="ピカチュウ" required>
+      </div>
+      <div class="form-group col-3">
+        <label>Lv</label>
+        <input type="number" class="form-control form-control-sm" id="level" placeholder="0" required>
       </div>
     </div>
   </div>
@@ -127,32 +140,32 @@
     <div class="form-row">
       <div class="form-group col-4">
         <label for="HP"><b>体力</b></label>
-        <input type="number" class="form-control" id="HP" placeholder="0"  required> 
+        <input type="number" class="form-control form-control-sm" id="HP" placeholder="0"  required> 
       </div>
       <div class="form-group col-4">
         <label for="A"><b>攻撃</b></label>
-        <input type="number" class="form-control" id="A" placeholder="0"  required> 
+        <input type="number" class="form-control form-control-sm" id="A" placeholder="0"  required> 
       </div>
       <div class="form-group col-4">
         <label for="B"><b>防御</b></label>
-        <input type="number" class="form-control" id="B" placeholder="0"  required> 
+        <input type="number" class="form-control form-control-sm" id="B" placeholder="0"  required> 
       </div>
       <div class="form-group col-4">
         <label for="C"><b>特攻</b></label>
-        <input type="number" class="form-control" id="C" placeholder="0"  required=>
+        <input type="number" class="form-control form-control-sm" id="C" placeholder="0"  required=>
       </div>
       <div class="form-group col-4">
         <label for="D"><b>特防</b></label>
-        <input type="number" class="form-control" id="D" placeholder="0" required>
+        <input type="number" class="form-control form-control-sm" id="D" placeholder="0" required>
       </div>
       <div class="form-group col-4"> 
         <label for="S"><b>素早さ</b></label>
-        <input type="number" class="form-control" id="S" placeholder="0"  required> 
+        <input type="number" class="form-control form-control-sm" id="S" placeholder="0"  required> 
       </div>
       </div>
-      <div class="form-group col-auto"> 
-          <label for="memo">メモ</label>
-          <input type="text" class="form-control" id="memo" placeholder="その他の情報"  required> 
+      <div class="form-group style="100%"> 
+        <label for="memo">メモ</label>
+        <textarea class="form-control" id="memo" rows="3" placeholder="0"  required></textarea>
       </div>
   </div>
 
@@ -163,9 +176,9 @@
     <a onclick="countData()" class="btn btn-outline-primary" role="button" style="width:auto">カウント</a>
   </div>
 
-  <div id="display" class="text-light bg-info" style="width:auto">
+  <div id="display" class="text-light bg-info" width="auto">
     Results
   </div>
-  
+
 </body>
 </html>

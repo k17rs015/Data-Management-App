@@ -1,2 +1,16 @@
 /**/
+h1 {
+padding: 0.2em 0.3em;/*文字の上下 左右の余白*/
+color: #ffad33;/*文字色*/
+background: #f4f4f4;/*背景色*/
+font-size: 35px;
+border-left: solid 5px #7db4e6;/*左線*/
+border-bottom: solid 3px #d7d7d7;/*下線*/
+}
+
+body {
+    background-image: url("ball.png");
+    background-size: 100% auto;
+    background-position : 0% -36%;
+}
 
