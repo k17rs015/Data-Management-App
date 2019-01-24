@@ -55,35 +55,60 @@
         })
       }
 
-      function fetchAll() {
-        UTdata.fetchAll()
-        .then(function(results){
-          var msg="<table border='1' rules='all' width='100%'>";
-          msg += "<tr><th>ニックネーム</th><th>レベル</th><th>体力</th><th>攻撃</th><th>防御</th><th>特攻</th><th>特坊</th><th>素早さ</th></tr>";
-          for(var i=0; i<results.length; i++){
-            var name=results[i].get("name");
-            var level=results[i].get("level");
-            var HP=results[i].get("HP");
-            var A=results[i].get("A");
-            var B=results[i].get("B");
-            var C=results[i].get("C");
-            var D=results[i].get("D");
-            var S=results[i].get("S");
-            msg += "<tr><td>" + name + "</td><td>" + level + "</td><td>" + HP + "</td><td>" + A + "</td><td>" + B + "</td><td>" + C + "</td><td>" + D + "</td><td>" + S + "</td></tr>";
-          }
-          msg += "</table>";
-          $("#display").removeClass();
-          $("#display").addClass("text-dark");
-          $("#display").addClass("bg-light");
-          $("#display").html(msg);
-        })
-        .catch(function(error){
-          $("#display").removeClass();
-          $("#display").addClass("bg-warning");
-          $("#display").html("delete fail:" + JSON.stringify(error));
-        })
-
+      function fetchAll(btn) {
+        if(btn==1){
+          UTdata.fetchAll()
+          .then(function(results){
+            var msg="<table border='1' rules='all' width='100%'>";
+            msg += "<tr><th>ニックネーム</th><th>レベル</th><th>体力</th><th>攻撃</th><th>防御</th><th>特攻</th><th>特坊</th><th>素早さ</th></tr>";
+            for(var i=0; i<results.length; i++){
+              var name=results[i].get("name");
+              var level=results[i].get("level");
+              var HP=results[i].get("HP");
+              var A=results[i].get("A");
+              var B=results[i].get("B");
+              var C=results[i].get("C");
+              var D=results[i].get("D");
+              var S=results[i].get("S");
+              msg += "<tr><td>" + name + "</td><td>" + level + "</td><td>" + HP + "</td><td>" + A + "</td><td>" + B + "</td><td>" + C + "</td><td>" + D + "</td><td>" + S + "</td></tr>";
+            }
+            msg += "</table>";
+            $("#display").removeClass();
+            $("#display").addClass("text-dark");
+            $("#display").addClass("bg-light");
+            $("#display").html(msg);
+          })
+          .catch(function(error){
+            $("#display").removeClass();
+            $("#display").addClass("bg-warning");
+            $("#display").html("delete fail:" + JSON.stringify(error));
+          })
+        }else if(btn==2){
+          UTdata.fetchAll()
+          .then(function(results){
+            var msg="<table border='1' rules='all' style='table-layout:fixed;width:100%;'>";
+            msg += "<tr><th width='28%'>ニックネーム</th><th width='15%'>レベル</th><th >メモ</th></tr>";
+            for(var i=0; i<results.length; i++){
+              var name=results[i].get("name");
+              var level=results[i].get("level");
+              var memo=results[i].get("memo");
+              msg += "<tr><td>" + name + "</td><td>" + level + "</td><td style='word-wrap:break-word;'>" + memo + "</td></tr>";
+            }
+            msg += "</table>";
+            $("#display").removeClass();
+            $("#display").addClass("text-dark");
+            $("#display").addClass("bg-light");
+            $("#display").html(msg);
+          })
+          .catch(function(error){
+            $("#display").removeClass();
+            $("#display").addClass("bg-warning");
+            $("#display").html("delete fail:" + JSON.stringify(error));
+          })
+        }
       }
+      
+     
 
       function deleteData() {
         UTdata.fetch()
@@ -163,20 +188,21 @@
         <input type="number" class="form-control form-control-sm" id="S" placeholder="0"  required> 
       </div>
       </div>
-      <div class="form-group style="100%"> 
+      <div class="form-group col=auto"> 
         <label for="memo">メモ</label>
-        <textarea class="form-control" id="memo" rows="3" placeholder="0"  required></textarea>
+        <textarea class="form-control" id="memo" rows="3" placeholder="技やその他の情報" required></textarea>
       </div>
   </div>
 
   <div>
     <a onclick="enterData()" class="btn btn-outline-secondary" role="button" style="width:auto">保存</a>
-    <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton" style="width:auto">表示</a>
+    <a onclick="fetchAll(1)" class="btn btn-outline-secondary" role="buton" style="width:auto">表示</a>
     <a onclick="deleteData()" class="btn btn-outline-danger" role="buton" style="width:auto">削除</a>
     <a onclick="countData()" class="btn btn-outline-primary" role="button" style="width:auto">カウント</a>
+    <a onclick="fetchAll(2)" class="btn btn-outline-secondary" role="buton" style="width:auto">メモを表示</a>
   </div>
 
-  <div id="display" class="text-light bg-info" width="auto">
+  <div id="display" class="text-light bg-info">
     Results
   </div>
 
