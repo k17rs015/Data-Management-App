@@ -10,7 +10,7 @@
     <script src="keys.js"></script>
     <script>
       var ncmb = new NCMB(appKey, clientKey);
-      var UTdata = ncmb.DataStore("Test1");
+      var UTdata = ncmb.DataStore("PKDB");
       var key = "HP";
       var key1 = "A";
       var key2 = "B";
@@ -46,12 +46,12 @@
         .then(function(results){
           $("#display").removeClass();
           $("#display").addClass("bg-success");
-          $("#display").html("enter success");
+          $("#display").html("保存成功");
         })
         .catch(function(results){
           $("#display").removeClass();
           $("#display").addClass("bg-warning");
-          $("#display").html("enter fail");
+          $("#display").html("保存失敗");
         })
       }
 
@@ -119,15 +119,19 @@
           .then(function(results){
             $("#display").removeClass();
             $("#display").addClass("bg-success");
-            $("#display").html("delete success");
+            $("#display").html("削除成功");
           })
           .catch(function(error){
             $("#display").removeClass();
             $("#display").addClass("bg-warning");
-            $("#display").html("delete fail:" + JSON.stringify(error));
+            $("#display").html("削除失敗:" + JSON.stringify(error));
           })
+          alert("削除しました");
         }else{
           alert("削除をキャンセルしました");
+          $("#display").removeClass();
+          $("#display").addClass("bg-warning");
+          $("#display").html("削除キャンセル");
         }
       }
 
@@ -141,7 +145,7 @@
         .catch(function(error){
           $("#display").removeClass();
           $("#display").addClass("bg-warning");
-          $("#display").html("count fail:" + JSON.stringify(error));
+          $("#display").html("カウント失敗:" + JSON.stringify(error));
         })
       }
 
@@ -159,8 +163,8 @@
         <input type="text" class="form-control form-control-sm" id="name" placeholder="ピカチュウ" required>
       </div>
       <div class="form-group col-3">
-        <label>Lv</label>
-        <input type="number" class="form-control form-control-sm" id="level" placeholder="0" required>
+        <label>レベル</label>
+        <input type="number" class="form-control form-control-sm" id="level" placeholder="例)50" required>
       </div>
     </div>
   </div>
@@ -169,27 +173,27 @@
     <div class="form-row">
       <div class="form-group col-4">
         <label for="HP"><b>体力</b></label>
-        <input type="number" class="form-control form-control-sm" id="HP" placeholder="0"  required> 
+        <input type="number" class="form-control form-control-sm" id="HP" placeholder="例)100"  required> 
       </div>
       <div class="form-group col-4">
         <label for="A"><b>攻撃</b></label>
-        <input type="number" class="form-control form-control-sm" id="A" placeholder="0"  required> 
+        <input type="number" class="form-control form-control-sm" id="A" placeholder="例)100"  required> 
       </div>
       <div class="form-group col-4">
         <label for="B"><b>防御</b></label>
-        <input type="number" class="form-control form-control-sm" id="B" placeholder="0"  required> 
+        <input type="number" class="form-control form-control-sm" id="B" placeholder="例)100"  required> 
       </div>
       <div class="form-group col-4">
         <label for="C"><b>特攻</b></label>
-        <input type="number" class="form-control form-control-sm" id="C" placeholder="0"  required=>
+        <input type="number" class="form-control form-control-sm" id="C" placeholder="例)100"  required=>
       </div>
       <div class="form-group col-4">
         <label for="D"><b>特防</b></label>
-        <input type="number" class="form-control form-control-sm" id="D" placeholder="0" required>
+        <input type="number" class="form-control form-control-sm" id="D" placeholder="例)100" required>
       </div>
       <div class="form-group col-4"> 
         <label for="S"><b>素早さ</b></label>
-        <input type="number" class="form-control form-control-sm" id="S" placeholder="0"  required> 
+        <input type="number" class="form-control form-control-sm" id="S" placeholder="例)100"  required> 
       </div>
       </div>
       <div class="form-group col=auto"> 
@@ -199,11 +203,12 @@
   </div>
 
   <div>
-    <a onclick="enterData()" class="btn btn-outline-secondary" role="button" style="width:auto">保存</a>
-    <a onclick="fetchAll(1)" class="btn btn-outline-secondary" role="buton" style="width:auto">表示</a>
-    <a onclick="deleteData()" class="btn btn-outline-danger" role="buton" style="width:auto">削除</a>
-    <a onclick="countData()" class="btn btn-outline-primary" role="button" style="width:auto">カウント</a>
-    <a onclick="fetchAll(2)" class="btn btn-outline-secondary" role="buton" style="width:auto">メモを表示</a>
+    <a onclick="enterData()" class="btn btn-outline-secondary mb-2" role="button" style="width:auto">保存</a>
+    <a onclick="fetchAll(1)" class="btn btn-outline-secondary mb-2" role="buton" style="width:auto">データを表示</a>
+    <a onclick="fetchAll(2)" class="btn btn-outline-secondary mb-2" role="buton" style="width:auto">メモを表示</a>
+    <a onclick="deleteData()" class="btn btn-danger text-light mb-2" role="buton" style="width:auto">削除</a>
+    <a onclick="countData()" class="btn btn-outline-primary mb-2" role="button" style="width:auto">カウント</a>
+    <a onclick="alert('※保存するときは空欄が無いようにしてください。エラーが起きます。\n削除は古い順から行われます。') " class="btn btn-outline-info mb-2" role="buton" style="width:auto">注意点</a>
   </div>
 
   <div id="display" class="text-light bg-info">
