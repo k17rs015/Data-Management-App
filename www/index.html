@@ -21,38 +21,42 @@
       var key7 = "level";
       var key8 = "memo";
 
+      
+
       function enterData() {
         var uTdata = new UTdata();
-        var value = parseInt($("#HP").val());
-        var value1 = parseInt($("#A").val());
-        var value2 = parseInt($("#B").val());
-        var value3 = parseInt($("#C").val());
-        var value4 = parseInt($("#D").val());
-        var value5 = parseInt($("#S").val());
+        var value = $("#HP").val();
+        var value1 = $("#A").val(); //parseIntを削除
+        var value2 = $("#B").val();
+        var value3 = $("#C").val();
+        var value4 = $("#D").val();
+        var value5 = $("#S").val();
         var value6 = $("#name").val();
         var value7 = $("#level").val();
         var value8 = $("#memo").val();
-
-        uTdata.set(key, value)
-        .set(key1, value1)
-        .set(key2, value2)
-        .set(key3, value3)
-        .set(key4, value4)
-        .set(key5, value5)
-        .set(key6, value6)
-        .set(key7, value7)
-        .set(key8, value8)
-        .save()
-        .then(function(results){
-          $("#display").removeClass();
-          $("#display").addClass("bg-success");
-          $("#display").html("保存成功");
-        })
-        .catch(function(results){
+        if(value && value1 && value2 && value3 && value4 && value5 && value6 && value7 && value8 != ""){ //nullから""に変更
+          uTdata.set(key, value)
+          .set(key1, value1)
+          .set(key2, value2)
+          .set(key3, value3)
+          .set(key4, value4)
+          .set(key5, value5)
+          .set(key6, value6)
+          .set(key7, value7)
+          .set(key8, value8)
+          .save()
+          .then(function(results){
+            $("#display").removeClass();
+            $("#display").addClass("bg-success");
+            $("#display").html("保存成功");
+            alert("保存に成功しました！")
+          })
+        }else{
           $("#display").removeClass();
           $("#display").addClass("bg-warning");
-          $("#display").html("保存失敗");
-        })
+          $("#display").html("error:保存失敗");
+          alert("保存に失敗しました")
+        }
       }
 
       function fetchAll(btn) {
@@ -120,13 +124,14 @@
             $("#display").removeClass();
             $("#display").addClass("bg-success");
             $("#display").html("削除成功");
+            alert("削除しました");
           })
           .catch(function(error){
             $("#display").removeClass();
             $("#display").addClass("bg-warning");
             $("#display").html("削除失敗:" + JSON.stringify(error));
+            alert("削除に失敗しました。\n削除するデータが存在しません。");
           })
-          alert("削除しました");
         }else{
           alert("削除をキャンセルしました");
           $("#display").removeClass();
@@ -139,8 +144,8 @@
         UTdata.count().fetchAll()
         .then(function(results){
           $("#display").removeClass();
-          $("#display").addClass("bg-success");
-          $("#display").html(results.count);
+          $("#display").addClass("bg-info text-light");
+          $("#display").html("保存されているデータの数は " + results.count + " です");
         })
         .catch(function(error){
           $("#display").removeClass();
@@ -149,7 +154,6 @@
         })
       }
 
-      
       
     </script>
 </head>
@@ -203,12 +207,12 @@
   </div>
 
   <div>
-    <a onclick="enterData()" class="btn btn-outline-secondary mb-2" role="button" style="width:auto">保存</a>
-    <a onclick="fetchAll(1)" class="btn btn-outline-secondary mb-2" role="buton" style="width:auto">データを表示</a>
-    <a onclick="fetchAll(2)" class="btn btn-outline-secondary mb-2" role="buton" style="width:auto">メモを表示</a>
-    <a onclick="deleteData()" class="btn btn-danger text-light mb-2" role="buton" style="width:auto">削除</a>
-    <a onclick="countData()" class="btn btn-outline-primary mb-2" role="button" style="width:auto">カウント</a>
-    <a onclick="alert('※保存するときは空欄が無いようにしてください。エラーが起きます。\n※削除は古い順から行われます。') " class="btn btn-outline-info mb-2" role="buton" style="width:auto">注意点</a>
+    <a onclick="enterData()" class="btn btn-outline-secondary ml-1 mb-2" role="button" style="width:auto">保存</a>
+    <a onclick="fetchAll(1)" class="btn btn-outline-secondary ml-1 mb-2" role="buton" style="width:auto">データを表示</a>
+    <a onclick="fetchAll(2)" class="btn btn-outline-secondary ml-1 mb-2" role="buton" style="width:auto">メモを表示</a>
+    <a onclick="deleteData()" class="btn btn-danger text-light ml-1 mb-2" role="buton" style="width:auto">削除</a>
+    <a onclick="countData()" class="btn btn-outline-primary ml-1 mb-2" role="button" style="width:auto">カウント</a>
+    <a onclick="alert('※保存するときは空欄が無いようにしてください。エラーが起きます。\n※削除は古い順から行われます。') " class="btn btn-outline-info ml-1 mb-2" role="buton" style="width:auto">※注意点※</a>
   </div>
 
   <div id="display" class="text-light bg-info">
