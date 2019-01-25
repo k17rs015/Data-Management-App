@@ -159,16 +159,16 @@
   <div class="container-fluid">
     <div class="form-row">
       <div class="form-group col-5">
-        <label>ニックネーム</label>
+        <label for="name"><b>ニックネーム</b></label>
         <input type="text" class="form-control form-control-sm" id="name" placeholder="ピカチュウ" required>
       </div>
       <div class="form-group col-3">
-        <label>レベル</label>
+        <label for="level"><b>レベル</b></label>
         <input type="number" class="form-control form-control-sm" id="level" placeholder="例)50" required>
       </div>
     </div>
   </div>
-  <div class="container">
+  <div class="container-fluid">
 
     <div class="form-row">
       <div class="form-group col-4">
@@ -197,7 +197,7 @@
       </div>
       </div>
       <div class="form-group col=auto"> 
-        <label for="memo">メモ</label>
+        <label for="memo"><b>メモ</b></label>
         <textarea class="form-control" id="memo" rows="3" placeholder="技やその他の情報" required></textarea>
       </div>
   </div>
@@ -208,7 +208,7 @@
     <a onclick="fetchAll(2)" class="btn btn-outline-secondary mb-2" role="buton" style="width:auto">メモを表示</a>
     <a onclick="deleteData()" class="btn btn-danger text-light mb-2" role="buton" style="width:auto">削除</a>
     <a onclick="countData()" class="btn btn-outline-primary mb-2" role="button" style="width:auto">カウント</a>
-    <a onclick="alert('※保存するときは空欄が無いようにしてください。エラーが起きます。\n削除は古い順から行われます。') " class="btn btn-outline-info mb-2" role="buton" style="width:auto">注意点</a>
+    <a onclick="alert('※保存するときは空欄が無いようにしてください。エラーが起きます。\n※削除は古い順から行われます。') " class="btn btn-outline-info mb-2" role="buton" style="width:auto">注意点</a>
   </div>
 
   <div id="display" class="text-light bg-info">
